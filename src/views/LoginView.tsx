@@ -1,20 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+
+interface IFormInput {
+  username: string;
+  password: string;
+}
 
 const LoginView: React.FC = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const { register, handleSubmit } = useForm();
 
-  const changeUsernameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(event.target.value);
-  }
-
-  const changePasswordHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-  }
-
-  const submitFormHandler = (event: React.FormEvent<HTMLFormElement>) => {
-    alert(`Are you sure? Username: ${username} Password: ${password}`);
-    event.preventDefault();
+  const submitFormHandler = (data: IFormInput) => {
+    alert(`Are you sure? Username: ${data.username} Password: ${data.password}`);
   }
 
   return (
@@ -24,10 +20,10 @@ const LoginView: React.FC = () => {
           <span>SIGN IN</span>
         </div>
       </header>
-      <form className='account-form' onSubmit={submitFormHandler}>
+      <form className='account-form' onSubmit={handleSubmit(submitFormHandler)}>
         <div className='account-form-fields'>
-          <input id='email' name='email' type='email' placeholder='E-mail' required onChange={changeUsernameHandler} />
-          <input id='password' name='password' type='password' placeholder='Password' required onChange={changePasswordHandler} />
+          <input id='username' name='username' type='email' placeholder='E-mail' required ref={register} />
+          <input id='password' name='password' type='password' placeholder='Password' required ref={register} />
         </div>
         <button className='btn-submit-form' type='submit'>
           Sign in
