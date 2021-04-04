@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 interface ITodoParagraphProps {
     string: string;
@@ -11,5 +11,5 @@ const TodoParagraphStyled = styled.p`
 `;
 
 export const TodoParagraph: React.FC<ITodoParagraphProps> = ({ string }) => {
-    return <TodoParagraphStyled >{ string }</TodoParagraphStyled>
+    return <TodoParagraphStyled>{ string }</TodoParagraphStyled>
 };
