@@ -7,6 +7,6 @@
   "rules": {
     "max-len": ["error", { "code": 120 }],
     "quotes": ["error", "single"],
-    "space-in-brackets": ["error", "always"]
+    "object-curly-spacing": ["error", "always"]
   }
 }
