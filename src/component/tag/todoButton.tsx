@@ -6,6 +6,12 @@ import { TodoParagraph } from './todoParagraph';
 interface ITodoButtonProps {
     string: string;
     bgColor?: string;
+    kinds?: TodoButtonKinds;
+}
+
+export enum TodoButtonKinds {
+    DEFAULT = 'DEFAULT',
+    APPROVE = 'APPROVE',
 }
 
 const TodoButtonStyled = styled.button`
@@ -21,11 +27,40 @@ const TodoButtonStyled = styled.button`
     }
 `;
 
-export const TodoButton: React.FC<ITodoButtonProps> = ({ string, bgColor }) => {
+const TodoApproveButtonStyled = styled.button`
+    background: ${(props) => props.color};
+    border: 1px solid red;
+    border-radius: 0.3rem;
+    cursor: pointer;
+
+    &:focus {
+        outline: none;
+        border: 1px solid rgb(65, 105, 225);
+        box-shadow: 0 0 5px 0 rgb(65, 105, 225);
+    }
+`;
+
+export const TodoButton: React.FC<ITodoButtonProps> = ({
+    string,
+    bgColor,
+    kinds,
+}) => {
     const color = bgColor ? bgColor : 'rgb(255, 255, 250)';
-    return (
-        <TodoButtonStyled color={color}>
-            <TodoParagraph string={string} />
-        </TodoButtonStyled>
-    );
+    const buttonKinds = kinds ? kinds : TodoButtonKinds.DEFAULT;
+
+    switch (buttonKinds) {
+        case TodoButtonKinds.APPROVE:
+            return (
+                <TodoApproveButtonStyled color={color}>
+                    <TodoParagraph string={string} />
+                </TodoApproveButtonStyled>
+            );
+        case TodoButtonKinds.DEFAULT:
+        default:
+            return (
+                <TodoButtonStyled color={color}>
+                    <TodoParagraph string={string} />
+                </TodoButtonStyled>
+            );
+    }
 };
