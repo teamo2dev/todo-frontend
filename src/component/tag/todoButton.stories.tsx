@@ -7,6 +7,8 @@ export default {
     component: TodoButton,
 } as Meta;
 
-export const Default = () => <TodoButton string='Default Btn' />
+export const Default = () => <TodoButton string="Default Btn" />;
 
-export const WithBackgroundProps = () => <TodoButton string='Custom Red Btn' bgColor='red' />
+export const WithBackgroundProps = () => (
+    <TodoButton string="Custom Red Btn" bgColor="red" />
+);
