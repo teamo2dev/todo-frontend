@@ -18,9 +18,9 @@ const defaultAuthValue: AuthStateType = {
 export const AuthStateContext = React.createContext<AuthStateType>(
     defaultAuthValue
 );
-export const AuthDispatchContext = React.createContext<
-    Dispatch<AuthActionType>
->(() => null);
+export const AuthDispatchContext = React.createContext<Dispatch<AuthAction>>(
+    () => null
+);
 
 const authReducer = (
     state: AuthStateType,
